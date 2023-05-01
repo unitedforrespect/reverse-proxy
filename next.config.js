@@ -1,6 +1,17 @@
-/** @type {import('next').NextConfig} */
+// @ts-check
+
+/**
+ * @type {import('next').NextConfig}
+ **/
 const nextConfig = {
-  reactStrictMode: true,
+  async rewrites() {
+    return [
+      {
+        source: `"${process.env.SOURCE_PATH}/:path*"`,
+        destination: `${process.env.DESTINATION_URL}/:path*`,
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
